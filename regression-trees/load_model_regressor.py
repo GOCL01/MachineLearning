@@ -10,19 +10,21 @@ import pandas as pd
 import joblib
 from sklearn.metrics import mean_squared_error, r2_score
 
-# === 1. Load model ===
+# Load model 
 regressor = joblib.load("regression_tree_model.pkl")
 print("Model loaded successfully!")
 
-# === 2. Load dataset ===
+# Load dataset
+# Here I am using the same dataset, which is not desirable, but it is just for demonstration
+# In reality you will load a dataset that contains new data.
 data = pd.read_csv("california_housing.csv")
 X = data.drop("MedHouseVal", axis=1)
 y = data["MedHouseVal"]
 
-# === 3. Make predictions ===
+# Make predictions
 y_pred = regressor.predict(X)
 
-# === 4. Evaluate and display results ===
+# Evaluate and display results 
 mse = mean_squared_error(y, y_pred)
 r2 = r2_score(y, y_pred)
 
